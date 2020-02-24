@@ -17,7 +17,7 @@ export const QuestionContainer = ({question, questionNumber, totalQuestions, ans
                                 {question.question}
                             </p>
 
-                            <Column.Group>
+                            <Column.Group breakpoint="mobile">
                                 <Column>
                                     <Button size="large" color="success" disabled={ questionNumber - 1 === totalQuestions } onClick={() => answerQuestion(true)}>Yes</Button>
                                 </Column>
