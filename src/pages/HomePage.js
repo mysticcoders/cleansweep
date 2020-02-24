@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 
 
 import { HeaderContainer } from '../containers/HeaderContainer'
@@ -16,16 +16,48 @@ export const HomePage = () => {
     const totalQuestions = questions.length
 
     const [questionNumber, setQuestionNumber] = useState(0)
+    // const [questionNumber, setQuestionNumber] = useState(100)
     const [answers, setAnswers] = useState([])
-
+    // const [answers, setAnswers] = useState([
+    //     true, false, true, true, true, true, true, true, true, false, 
+    //     true, true, true, true, true, true, true, true, true, true, 
+    //     true, true, true, true, false, true, true, true, true, true, 
+    //     true, true, true, true, true, true, true, true, true, true, 
+    //     true, true, true, true, true, true, true, true, true, true, 
+    //     true, true, true, true, true, true, true, true, true, true, 
+    //     true, true, false, true, true, true, true, true, true, true, 
+    //     true, true, true, true, true, true, true, false, true, true, 
+    //     true, true, true, true, true, true, true, true, true, true, 
+    //     true, true, false, true, true, true, true, true, true, true, 
+    // ])
+    
     const [categoryAnswers, setCategoryAnswers] = useState({})
+    
+    // const [categoryAnswers, setCategoryAnswers] = useState({
+    //     "Environment": 20,
+    //     "Well-Being": 25,
+    //     "Relationships": 22,
+    //     "Money": 23
+    // })
+
+    const categoryTotals = useMemo(() => {
+        let totals = {}
+
+        const uniqueCategories = questions.map(question => question.category)
+
+        for(const uniqueCategory of uniqueCategories) {
+            if(!totals.hasOwnProperty(uniqueCategory)) {
+                totals[uniqueCategory] = 0
+            }
+    
+            totals[uniqueCategory] += 1
+        }
+
+        return totals
+    }, []);
 
     const retrieveQuestion = () => {
-        if(!isDone()) {
-            return questions[questionNumber]
-        } else {
-            return null
-        }
+        return !isDone() ? questions[questionNumber] : null
     }
 
     const answerQuestion = (yes) => {
@@ -81,6 +113,9 @@ export const HomePage = () => {
                         totalQuestions={totalQuestions}
                         score={score()}
                         categoryAnswers={categoryAnswers}
+                        categoryTotals={categoryTotals}
+                        questions={questions}
+                        answers={answers}
                     />
 
                 }
