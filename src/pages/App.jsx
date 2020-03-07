@@ -1,5 +1,6 @@
 import React from 'react'
-import HomePage from './HomePage'
+import QuizPage from './QuizPage'
+import StartPage from './StartPage'
 
 import {
     Switch,
@@ -10,10 +11,13 @@ import { NotFoundPage } from './NotFoundPage'
 
 const App = () => (
     <Switch>
-        <Redirect exact from="/" to="/home" />
+        <Redirect exact from="/" to="/start" />
 
-        <Route path="/home">
-            <HomePage />
+        <Route path="/quiz">
+            <QuizPage />
+        </Route>
+        <Route path="/start">
+            <StartPage />
         </Route>
         <Route>
             <NotFoundPage />

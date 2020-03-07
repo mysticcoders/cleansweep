@@ -6,9 +6,13 @@ import { Navbar, Button } from "rbx"
 
 import CleanSweepLogo from '../images/cleansweep-logo.png'
 
+import store from 'store'
+
 export const HeaderContainer = ({activeItem, startOver}) => {
     const history = useHistory()
    
+    const hasQuizStarted = store.get("answers") ? true : false
+
     return (
         <Navbar>
             <Navbar.Brand>
@@ -23,15 +27,17 @@ export const HeaderContainer = ({activeItem, startOver}) => {
                 </Navbar.Item>
                 <Navbar.Burger />
             </Navbar.Brand>
-            <Navbar.Menu>
-                <Navbar.Segment align="end">
-                <Navbar.Item>
-                    <Button color="danger" onClick={() => { startOver() }}>
-                        <strong>Start Over</strong>
-                    </Button>
-                </Navbar.Item>
-                </Navbar.Segment>
-            </Navbar.Menu>
+            { hasQuizStarted &&
+                <Navbar.Menu>
+                    <Navbar.Segment align="end">
+                    <Navbar.Item>
+                        <Button color="danger" onClick={() => { startOver() }}>
+                            <strong>Start Over</strong>
+                        </Button>
+                    </Navbar.Item>
+                    </Navbar.Segment>
+                </Navbar.Menu>
+            }
         </Navbar>
     )
 

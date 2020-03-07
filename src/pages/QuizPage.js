@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 
+import { useHistory } from 'react-router'
 
 import { HeaderContainer } from '../containers/HeaderContainer'
 import { FooterContainer } from '../containers/FooterContainer'
@@ -13,7 +14,9 @@ import store from 'store'
 
 const questions = require('../constants/questions.json')
 
-export const HomePage = () => {
+const QuizPage = () => {
+
+    const history = useHistory()
 
     const totalQuestions = questions.length
     
@@ -91,9 +94,10 @@ export const HomePage = () => {
 
     const startOver = () => {
         setQuestionNumber(0)
-        setAnswers([])
+        setAnswers(null)
 
-        store.remove('answers')
+        history.push('/start')
+        store.remove('answers')        
     }
 
     return (
@@ -134,4 +138,4 @@ export const HomePage = () => {
     )
 }
 
-export default HomePage
+export default QuizPage
