@@ -8,7 +8,7 @@ import CleanSweepLogo from '../images/cleansweep-logo.png'
 
 import store from 'store'
 
-export const HeaderContainer = ({activeItem, startOver}) => {
+export const HeaderContainer = ({startOver}) => {
     const history = useHistory()
    
     const hasQuizStarted = store.get("answers") ? true : false
@@ -17,13 +17,10 @@ export const HeaderContainer = ({activeItem, startOver}) => {
         <Navbar>
             <Navbar.Brand>
                 <Navbar.Item onClick={() => { history.push('/') }}>
-                    <img
-                        src={CleanSweepLogo}
-                        alt=""
-                        role="presentation"
-                        width="184"
-                        height="32"
-                    />                    
+                    <img src={CleanSweepLogo}
+                        alt="Clean Sweep" role="presentation"
+                        width="184" height="32"
+                    />
                 </Navbar.Item>
                 <Navbar.Burger />
             </Navbar.Brand>
@@ -40,5 +37,6 @@ export const HeaderContainer = ({activeItem, startOver}) => {
             }
         </Navbar>
     )
-
 }
+
+export default HeaderContainer

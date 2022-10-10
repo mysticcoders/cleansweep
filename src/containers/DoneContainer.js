@@ -4,7 +4,7 @@ import { Content, Box, Title, Tag, Tab, Table } from "rbx"
 
 import numeral from "numeral"
 
-import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv"
 
 export const DoneContainer = ({totalQuestions, questions, answers, score, categoryAnswers, categoryTotals}) => {
 

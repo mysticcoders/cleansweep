@@ -38,7 +38,7 @@ const QuizPage = () => {
         const uniqueCategories = questions.map(question => question.category)
 
         for(const uniqueCategory of uniqueCategories) {
-            if(!totals.hasOwnProperty(uniqueCategory)) {
+            if(!Object.prototype.hasOwnProperty.call(totals, uniqueCategory)) {
                 totals[uniqueCategory] = 0
             }
     
@@ -46,7 +46,7 @@ const QuizPage = () => {
         }
 
         return totals
-    }, []);
+    }, [])
 
     const categoryAnswers = useMemo(() => {
         let catAns = {}
@@ -55,7 +55,7 @@ const QuizPage = () => {
 
         let idx = 0
         for(const uniqueCategory of uniqueCategories) {
-            if(!catAns.hasOwnProperty(uniqueCategory)) {
+            if(!Object.prototype.hasOwnProperty.call(catAns, uniqueCategory)) {
                 catAns[uniqueCategory] = 0
             }
 

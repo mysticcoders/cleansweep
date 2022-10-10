@@ -14,7 +14,7 @@ const root = document.getElementById('root')
 if (root instanceof Element) {
     ReactDOM.render(
         <Router history={history}>
-        <App />
+            <App />
         </Router>,
     root,
 )
