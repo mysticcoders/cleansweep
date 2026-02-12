@@ -1,28 +1,20 @@
-import React from 'react'
 import QuizPage from './QuizPage'
 import StartPage from './StartPage'
+import NotFoundPage from './NotFoundPage'
 
 import {
-    Switch,
-    Route,
-    Redirect,
+  Routes,
+  Route,
+  Navigate,
 } from 'react-router-dom'
-import { NotFoundPage } from './NotFoundPage'
 
 const App = () => (
-    <Switch>
-        <Redirect exact from="/" to="/start" />
-
-        <Route path="/quiz">
-            <QuizPage />
-        </Route>
-        <Route path="/start">
-            <StartPage />
-        </Route>
-        <Route>
-            <NotFoundPage />
-        </Route>
-    </Switch>
+  <Routes>
+    <Route path="/" element={<Navigate to="/start" replace />} />
+    <Route path="/quiz" element={<QuizPage />} />
+    <Route path="/start" element={<StartPage />} />
+    <Route path="*" element={<NotFoundPage />} />
+  </Routes>
 )
 
 export default App
